@@ -1,43 +1,31 @@
 #include "led.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//±¾³ÌÐòÖ»¹©Ñ§Ï°Ê¹ÓÃ£¬Î´¾­×÷ÕßÐí¿É£¬²»µÃÓÃÓÚÆäËüÈÎºÎÓÃÍ¾
-//ALIENTEK STM32H7¿ª·¢°å
-//LEDÇý¶¯´úÂë	   
-//ÕýµãÔ­×Ó@ALIENTEK
-//¼¼ÊõÂÛÌ³:www.openedv.com
-//´´½¨ÈÕÆÚ:2017/6/8
-//°æ±¾£ºV1.0
-//°æÈ¨ËùÓÐ£¬µÁ°æ±Ø¾¿¡£
-//Copyright(C) ¹ãÖÝÊÐÐÇÒíµç×Ó¿Æ¼¼ÓÐÏÞ¹«Ë¾ 2014-2024
-//All rights reserved									  
-////////////////////////////////////////////////////////////////////////////////// 	
 
-//³õÊ¼»¯PB0,PB1ÎªÊä³ö.²¢Ê¹ÄÜÕâÁ½¸ö¿ÚµÄÊ±ÖÓ		    
-//LED IO³õÊ¼»¯
+//åˆå§‹åŒ–PB0,PB1ä¸ºè¾“å‡º.å¹¶ä½¿èƒ½è¿™ä¸¤ä¸ªå£çš„æ—¶é’Ÿ		    
+//LED IOåˆå§‹åŒ–
 void LED_Init(void)
 {
 //    GPIO_InitTypeDef GPIO_Initure;
-//    __HAL_RCC_GPIOB_CLK_ENABLE();					//¿ªÆôGPIOBÊ±ÖÓ
+//    __HAL_RCC_GPIOB_CLK_ENABLE();					//å¼€å¯GPIOBæ—¶é’Ÿ
 //	
-//    GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;			//PB0£¬1
-//    GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  		//ÍÆÍìÊä³ö
-//    GPIO_Initure.Pull=GPIO_PULLUP;         			//ÉÏÀ­
-//    GPIO_Initure.Speed=GPIO_SPEED_FREQ_VERY_HIGH;  	//¸ßËÙ
-//    HAL_GPIO_Init(GPIOB,&GPIO_Initure);     		//³õÊ¼»¯GPIOB.0ºÍGPIOB.1
+//    GPIO_Initure.Pin=GPIO_PIN_0|GPIO_PIN_1;			//PB0ï¼Œ1
+//    GPIO_Initure.Mode=GPIO_MODE_OUTPUT_PP;  		//æŽ¨æŒ½è¾“å‡º
+//    GPIO_Initure.Pull=GPIO_PULLUP;         			//ä¸Šæ‹‰
+//    GPIO_Initure.Speed=GPIO_SPEED_FREQ_VERY_HIGH;  	//é«˜é€Ÿ
+//    HAL_GPIO_Init(GPIOB,&GPIO_Initure);     		//åˆå§‹åŒ–GPIOB.0å’ŒGPIOB.1
 //	
-//    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);	//PB0ÖÃ0
-//	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);	//PB1ÖÃ1 
+//    HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);	//PB0ç½®0
+//	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);	//PB1ç½®1 
 
-		//Ê±ÖÓÊ¹ÄÜ
+		//æ—¶é’Ÿä½¿èƒ½
 RCC->AHB4ENR|=1<<1;
 	
-//GPIOB.8 ÍÆÍìÊä³ö
+//GPIOB.8 æŽ¨æŒ½è¾“å‡º
 GPIOB->MODER=0X00010000;//0X55555555;
 GPIOB->OTYPER=0X00000000;
 GPIOB->OSPEEDR=0X00030000;//0XFFFFFFFF;
 GPIOB->PUPDR=0X00010000;
 
-GPIOB->BSRRH=0X0100;//¸ß
-GPIOB->BSRRL=0X0100;  //µÍ
+GPIOB->BSRRH=0X0100;//é«˜
+GPIOB->BSRRL=0X0100;  //ä½Ž
 }
 
